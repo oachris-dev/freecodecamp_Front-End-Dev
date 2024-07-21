@@ -1,13 +1,12 @@
 #!/bin/bash
 
-# Check if a commit message is provided
-if [ -z "$1" ]; then
-  echo "Error: No commit message provided."
-  echo "Usage: ./git-automate.sh 'Your commit message'"
-  exit 1
-fi
+# Default commit message
+DEFAULT_MESSAGE="Automated commit"
+
+# Use the provided commit message if available, otherwise use the default message
+COMMIT_MESSAGE=${1:-$DEFAULT_MESSAGE}
 
 # Run Git commands
 git add .
-git commit -m "$1"
+git commit -m "$COMMIT_MESSAGE"
 git push
