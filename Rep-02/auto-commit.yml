@@ -1,0 +1,29 @@
+name: Auto Commit
+
+on:
+  push:
+    branches:
+      - main  # Trigger the workflow on push to the main branch
+  schedule:
+    - cron: '0 * * * *'  # Trigger the workflow every hour
+
+jobs:
+  auto-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Git
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+
+      - name: Commit and push changes
+        run: |
+          git add .
+          git commit -m "Automated commit"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
