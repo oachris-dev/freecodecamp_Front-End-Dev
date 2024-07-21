@@ -3,7 +3,7 @@ name: Auto Sync Changes
 on:
   push:
     branches:
-      - main  # Monitor changes to the main branch
+      - main
 
 jobs:
   sync:
@@ -18,11 +18,25 @@ jobs:
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
 
-      - name: Pull, commit, push changes
+      - name: Pull changes
         run: |
           git pull --rebase
+        continue-on-error: true
+
+      - name: Check status
+        run: git status
+
+      - name: Add changes
+        run: |
           git add .
-          git commit -m "Automated commit on $(date)"
+          git status
+
+      - name: Commit changes
+        run: |
+          git commit -m "Automated commit on $(date)" || echo "No changes to commit"
+
+      - name: Push changes
+        run: |
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
