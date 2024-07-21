@@ -7,6 +7,7 @@ DEFAULT_MESSAGE="Automated commit"
 COMMIT_MESSAGE=${1:-$DEFAULT_MESSAGE}
 
 # Run Git commands
-git add .github/workflows/auto-sync.yml
-git commit -m "Update workflow with debug steps"
-git push origin main
+git pull --rebase
+git add .
+git commit -m "Automated commit test"
+git push
