@@ -1,6 +1,6 @@
 * {
   margin: 0;
-  font-family: Outfit, sans-serif;
+  font-family: Tahoma, Outfit, sans-serif;
 }
 
 body {
@@ -11,19 +11,7 @@ body {
   color: #f5f6f7;
 }
 
-body,
-h1 {
-  font-weight: 500;
-}
-
-body,
-p {
-  font-weight: 300;
-}
-
 label {
   display: block;
   margin: 0.5rem 0;
 }
-
-
